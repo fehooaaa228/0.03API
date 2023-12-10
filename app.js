@@ -25,6 +25,7 @@ app.get('/:chatId', (req, res) => {
         for(let i = messages.length - 1; i >= 0; i--){
             if(messages[i].id == +req.params.chatId){
                 res.end(messages[i].text);
+                break;
             }
         }
     }
