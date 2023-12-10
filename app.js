@@ -21,12 +21,10 @@ app.get('/:chatId', (req, res) => {
         }
     }
 
-    console.log(messages);
-
     if(messages.length != 0){
-        for(let i = messages.length - 1; i >= 0; i++){
+        for(let i = messages.length - 1; i >= 0; i--){
             if(messages[i].id == +req.params.chatId){
-                res.end(JSON.stringify(messages[i]));
+                res.end(messages[i].text);
             }
         }
     }
