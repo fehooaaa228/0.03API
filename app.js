@@ -12,15 +12,15 @@ bot.on('message', function(message) {
         id: message.from.id,
         time: Date.now()
     });
-})
 
-app.get('/:chatId', (req, res) => {
     for(let i = 0; i < messages.length; i++){
         if(Date.now() - messages[i].time > 3000){
             messages.splice(i, 1)
         }
     }
+})
 
+app.get('/:chatId', (req, res) => {
     if(messages.length != 0){
         for(let i = messages.length - 1; i >= 0; i--){
             if(messages[i].id == +req.params.chatId){
@@ -30,7 +30,7 @@ app.get('/:chatId', (req, res) => {
         }
     }
     else {
-        res.end("");
+        res.end("none");
     }
 });
 
