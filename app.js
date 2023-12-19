@@ -6,18 +6,22 @@ const bot = new TelegramApi(token, {polling: true});
 const port = 8080;
 let messages = [];
 
+const cleaner = setInterval(function() {
+    for(let i = 0; i < messages.length; i++){
+        if(Date.now() - messages[i].time > 3000){
+            messages.splice(i, 1)
+        }
+    }
+
+    console.log(messages);
+}, 1000);
+
 bot.on('message', function(message) {
     messages.push({
         text: message.text,
         id: message.from.id,
         time: Date.now()
     });
-
-    for(let i = 0; i < messages.length; i++){
-        if(Date.now() - messages[i].time > 3000){
-            messages.splice(i, 1)
-        }
-    }
 })
 
 app.get('/:chatId', (req, res) => {
@@ -34,4 +38,7 @@ app.get('/:chatId', (req, res) => {
     }
 });
 
-app.listen(port);
+app.listen(port, (err) => {
+    if(err) console.log(err);
+    else console.log("Server has been started on port " + port);
+});
