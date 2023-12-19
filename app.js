@@ -12,8 +12,6 @@ const cleaner = setInterval(function() {
             messages.splice(i, 1)
         }
     }
-
-    console.log(messages);
 }, 1000);
 
 bot.on('message', function(message) {
@@ -26,11 +24,18 @@ bot.on('message', function(message) {
 
 app.get('/:chatId', (req, res) => {
     if(messages.length != 0){
+        let found = false;
+
         for(let i = messages.length - 1; i >= 0; i--){
             if(messages[i].id == +req.params.chatId){
+                found = true;
                 res.end(messages[i].text);
                 break;
             }
+        }
+
+        if(!found){
+            res.end("none");
         }
     }
     else {
