@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const token = "6378658163:AAF-dzV7Tb6QOAtSDyD02hLhSgduDEC3r44";
+const token = "6808489949:AAG8dIlRnk5KHqZfOxDyi26MonviALzs3BY";
 const TelegramApi = require('node-telegram-bot-api');
 const bot = new TelegramApi(token, {polling: true});
 const port = 8080;
