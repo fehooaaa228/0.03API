@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const token = "6808489949:AAG8dIlRnk5KHqZfOxDyi26MonviALzs3BY";
+const token = "6472460834:AAEK33il0Q9_m-V44fyZejoW-hUMI38_zXM";
 const TelegramApi = require('node-telegram-bot-api');
 const bot = new TelegramApi(token, {polling: true});
 const port = 8080;
@@ -15,6 +15,8 @@ const cleaner = setInterval(function() {
 }, 1000);
 
 bot.on('message', function(message) {
+    console.log("new message received: " + message.text);
+
     messages.push({
         text: message.text,
         id: message.from.id,
